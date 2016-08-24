@@ -12,8 +12,8 @@ CONTRIB_PATH=$ROOT/opencv_contrib
 cd $OPENCV_PATH && git checkout . && git checkout tags/3.0.0
 cd $CONTRIB_PATH && git checkout . && git checkout tags/3.0.0
 
-# mkdir -p $BUILD_PATH
-# cd $BUILD_PATH
+mkdir -p $BUILD_PATH
+cd $BUILD_PATH
 
 # cmake $OPENCV_PATH -G "Unix Makefiles" \
 #     -DWITH_GTK=0 \
