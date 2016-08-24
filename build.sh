@@ -11,11 +11,12 @@ git submodule init && git submodule update
 cd $OPENCV_PATH  && git checkout . && git checkout tags/$TAG
 cd $CONTRIB_PATH && git checkout . && git checkout tags/$TAG
 
+rm -rf $BUILD_PATH 
 mkdir -p $BUILD_PATH
 cd $BUILD_PATH
 
 cmake $OPENCV_PATH -G "Unix Makefiles" \
-    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_BUILD_TYPE=Release\
     -DOPENCV_WARNINGS_ARE_ERRORS=0 \
     -DOPENCV_EXTRA_MODULES_PATH=$CONTRIB_PATH/modules \
  \
@@ -26,7 +27,7 @@ cmake $OPENCV_PATH -G "Unix Makefiles" \
   \
     -DBUILD_DOCS=0 \
     -DBUILD_EXAMPLES=0 \
-    -DBUILD_TBB=1 \
+    -DBUILD_TBB=0 \
     -DBUILD_SHARED_LIBS=1 \
   \
     -DWITH_GTK=0 \
@@ -50,8 +51,6 @@ cmake $OPENCV_PATH -G "Unix Makefiles" \
     -DBUILD_CUDA_STUBS=0 \
     -DCUDA_FAST_MATH=1 \
 
-# make -j4 
-
-
-#sudo make install
+make -j4 
+sudo make install
 
