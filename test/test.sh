@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python ./find_obj.py --feature=akaze test-./front1.jpg test-./front2.jpg
+python ./find_obj.py --feature=akaze ./front1.jpg ./front2.jpg
