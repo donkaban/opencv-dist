@@ -8,12 +8,18 @@ OPENCV_PATH=$ROOT/opencv
 BUILD_PATH=$ROOT/.build
 CONTRIB_PATH=$ROOT/opencv_contrib
 
+
+if [ $1 == "clean" ]; then
+    rm -rf $BUILD_PATH
+    exit    
+fi
+
 git submodule init && git submodule update
 
 cd $OPENCV_PATH  && git checkout . && git checkout tags/$TAG
 cd $CONTRIB_PATH && git checkout . && git checkout tags/$TAG
 
-rm -rf $BUILD_PATH && mkdir -p $BUILD_PATH && cd $BUILD_PATH
+mkdir -p $BUILD_PATH && cd $BUILD_PATH
 
 cmake $OPENCV_PATH -G "Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=Release\
@@ -53,6 +59,17 @@ cmake $OPENCV_PATH -G "Unix Makefiles" \
     -DCUDA_FAST_MATH=1          \
 
 make -j4 
+
+if [ $1 == "install" ]; then
+    sudo make install
+fi
+if [ $1 == "uninstall" ]; then
+    sudo make uninstall
+fi
+
+if [ $1 == "pack" ]; then
+    echo packing...
+fi
 
 
 

@@ -16,6 +16,7 @@ fi
 
 if [ $NAME == "Linux" ]; then
     sudo apt-get install -y build-essential gcc g++ cmake git pkg-config python-dev python-numpy 
+    sudo apt-get install -y devscripts lintian dh-make
     sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev
     sudo apt-get install -y libjpeg-dev libpng-dev libtiff-dev libjasper-dev 
 fi
