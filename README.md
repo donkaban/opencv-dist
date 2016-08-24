@@ -1,5 +1,11 @@
 ## OPENCV BUILD FARM
 
+#### DEVELOPER TARGET 
+
+* any deb based Linux 
+* any rpm based Linux
+* macos 10.11 and newer with clang installed
+
 
 #### BUILD && INSTALL (FOR DEVELOPER ENVS) :
 
