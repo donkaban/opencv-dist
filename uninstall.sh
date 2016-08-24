@@ -2,16 +2,8 @@
 
 ROOT=`pwd`
 
-TAG='3.0.0'
-
-OPENCV_PATH=$ROOT/opencv
 BUILD_PATH=$ROOT/.build
 CONTRIB_PATH=$ROOT/opencv_contrib
-
-git submodule init && git submodule update
-
-cd $OPENCV_PATH  && git checkout . && git checkout tags/$TAG
-cd $CONTRIB_PATH && git checkout . && git checkout tags/$TAG
 
 rm -rf $BUILD_PATH && mkdir -p $BUILD_PATH && cd $BUILD_PATH
 
@@ -52,7 +44,4 @@ cmake $OPENCV_PATH -G "Unix Makefiles" \
     -DBUILD_CUDA_STUBS=0        \
     -DCUDA_FAST_MATH=1          \
 
-make -j4 
-
-
-
+sudo make uninstall
