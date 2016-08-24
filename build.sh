@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 ROOT=`pwd`
+
 TAG='3.0.0'
+
 OPENCV_PATH=$ROOT/opencv
 BUILD_PATH=$ROOT/.build
 CONTRIB_PATH=$ROOT/opencv_contrib
