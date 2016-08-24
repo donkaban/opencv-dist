@@ -13,6 +13,36 @@ if [ $1 == "clean" ]; then
     exit    
 fi
 
+if [ $1 == "tesseract" ]; then
+   cd tesseract
+    ./autogen.sh
+    ./configure \
+        --with-extra-libraries=/usr/local/lib \
+        --with-extra-includes=/usr/local/include \
+        LDFLAGS=-L/usr/local/lib \
+        CPPFLAGS=-I/usr/local/include
+    make -j4
+    sudo make install
+
+    make training -j4
+    sudo make training-install
+
+    echo download trained data...
+    
+    wget https://tesseract-ocr.googlecode.com/files/eng.traineddata.gz
+    wget https://tesseract-ocr.googlecode.com/files/rus.traineddata.gz
+
+    gunzip eng.traineddata.gz
+    gunzip rus.traineddata.gz
+
+    sudo mv -v eng.traineddata /usr/local/share/tessdata/
+    sudo mv -v rus.traineddata /usr/local/share/tessdata/
+
+    rm -fv rus.traineddata.gz
+    rm -fv eng.traineddata.gz
+fi
+
+
 git submodule init && git submodule update
 
 cd $OPENCV_PATH  && git checkout . && git checkout tags/$TAG
@@ -28,7 +58,7 @@ cmake $OPENCV_PATH -G "Unix Makefiles" \
     -DBUILD_DOCS=0              \
     -DBUILD_TESTS=0             \
     -DBUILD_EXAMPLES=0          \
-    -DBUILD_TBB=0               \
+    -DBUILD_TBB=1               \
     -DBUILD_SHARED_LIBS=1       \
 \
     -DINSTALL_CREATE_DISTRIB=0  \
