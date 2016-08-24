@@ -8,7 +8,6 @@ OPENCV_PATH=$ROOT/opencv
 BUILD_PATH=$ROOT/.build
 CONTRIB_PATH=$ROOT/opencv_contrib
 
-
 if [ $1 == "clean" ]; then
     rm -rf $BUILD_PATH
     exit    
@@ -70,6 +69,4 @@ fi
 if [ $1 == "pack" ]; then
     echo packing...
 fi
-
-
 
