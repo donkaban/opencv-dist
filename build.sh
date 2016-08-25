@@ -84,6 +84,12 @@ if [ "$TESSERACT" == "YES" ]; then
 fi
 
 if [ "$OPENCV" == "YES" ]; then
+    if [ $(uname -s) == "Darwin" ]; then
+        ADD_PARAMETERS="-DPYTHON2_PACKAGES_PATH=/usr/local/lib/python2.7/site-packages \
+                       -DPYTHON2_LIBRARY=/usr/local/Frameworks/Python.framework/Versions/2.7/bin \
+                       -DPYTHON2_INCLUDE_DIR=/usr/local/Frameworks/Python.framework/Headers" 
+
+    fi    
 
     git submodule init && git submodule update
 
@@ -93,6 +99,7 @@ if [ "$OPENCV" == "YES" ]; then
     mkdir -p $BUILD_PATH && cd $BUILD_PATH
 
     cmake $OPENCV_PATH -G "Unix Makefiles" \
+        $ADD_PARAMETERS \
         -DCMAKE_BUILD_TYPE=Release\
         -DOPENCV_WARNINGS_ARE_ERRORS=0 \
         -DOPENCV_EXTRA_MODULES_PATH=$CONTRIB_PATH/modules \
@@ -126,10 +133,7 @@ if [ "$OPENCV" == "YES" ]; then
         -DWITH_IPP=1                \
         -DWITH_OPENMP=1             \
         -DWITH_OPENNI=1             \
-    \
-        -DWITH_CUDA=0               \
-        -DBUILD_CUDA_STUBS=0        \
-        -DCUDA_FAST_MATH=1          \
+  
 
     if [ "$ONLY_CONFIG" == "NO" ]; then
         make -j7
