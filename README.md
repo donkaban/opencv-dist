@@ -20,7 +20,7 @@
 		git clone --recursive git@gitlab.i-free.com:k.shabordin1/opencv-dist.git
 		cd opencv-dist
 		./prereq.sh
-		./build.sh --opencv --tesseract --install 
+		./build.sh --clean --opencv --tesseract --install 
 
 
 #### DEVOPS MODE : 
@@ -28,7 +28,7 @@
 		git clone --recursive git@gitlab.i-free.com:k.shabordin1/opencv-dist.git
 		cd opencv-dist
 		./prereq.sh
-		./build.sh --opencv --pack
+		./build.sh --clean --opencv --pack
 
 
 

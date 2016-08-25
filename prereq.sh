@@ -10,7 +10,7 @@ if [ $NAME == "Darwin" ]; then
     fi
     brew tap homebrew/science && brew update
     brew install git cmake automake autoconf libtool
-    brew install  jpeg libpng libtiff openexr eigen 
+    brew install  cairo jpeg libpng libtiff openexr eigen 
     brew cleanup && brew prune
 fi
 
