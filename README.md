@@ -7,20 +7,29 @@
 * macos 10.11 and newer with clang installed
 
 
-#### BUILD && INSTALL (FOR DEVELOPER ENVS) :
+#### build.sh options
+* --clean : clean build directories
+* --opencv : build opencv
+* --tesseract : build tesseract
+* --install : install builded library (for developer only!)
+* --pack : create deploy packet for installing on target platform
+
+
+#### DEVELOPER MODE :
 
 		git clone --recursive git@gitlab.i-free.com:k.shabordin1/opencv-dist.git
 		cd opencv-dist
 		./prereq.sh
-		./build.sh install 
+		./build.sh --opencv --tesseract --install 
 
 
-#### BUILD && CREATE DEPLOY PACK 
+#### DEVOPS MODE : 
 
 		git clone --recursive git@gitlab.i-free.com:k.shabordin1/opencv-dist.git
 		cd opencv-dist
 		./prereq.sh
-		./build.sh pack
+		./build.sh --opencv --pack
+
 
 
 #### DEPLOY ON TARGET SYSTEM
