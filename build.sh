@@ -12,6 +12,7 @@ PACK=NO
 ONLY_CONFIG=NO
 OPENCV=NO
 TESSERACT=NO
+
 for i in "$@"
 do
     case $i in
