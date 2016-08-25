@@ -10,9 +10,9 @@ CONTRIB_PATH=$ROOT/opencv_contrib
 
 INSTALL=0
 PACK=0
+ONLY_CONFIG=0
 
 echo "usage : build.sh [--opencv] [--tesseract] [--install] [--clean] [--pack] [--uninstall]"
-
 
 function build_tesseract {
    cd tesseract
@@ -22,10 +22,11 @@ function build_tesseract {
         --with-extra-includes=/usr/local/include \
         LDFLAGS=-L/usr/local/lib \
         CPPFLAGS=-I/usr/local/include
-    make -j4
-    make training -j4
-    
-    if [ ${INSTALL} -eq 0 ]; then
+    if [ "$ONLY_CONFIG" == "0" ]; then
+        make -j4
+        make training -j4
+    fi
+    if [ "$INSTALL" == "1" ]; then
         sudo make install 
         sudo make training-install 
         make clean
@@ -87,8 +88,10 @@ function build_opencv {
         -DBUILD_CUDA_STUBS=0        \
         -DCUDA_FAST_MATH=1          \
 
-    make -j4 
-    if [ $INSTALL -eq 0 ]; then
+    if [ "$ONLY_CONFIG" == "0" ]; then
+        make -j4 
+    fi    
+    if [ "$INSTALL" == "1" ]; then
         sudo make install 
     fi
 
@@ -102,6 +105,10 @@ do
         --clean)
             echo "clean build dir ..."
             rm -rf $BUILD_PATH
+            shift 
+        ;;
+        --config)
+            ONLY_CONFIG=1
             shift 
         ;;
         --install)
