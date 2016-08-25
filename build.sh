@@ -84,6 +84,7 @@ if [ "$TESSERACT" == "YES" ]; then
 fi
 
 if [ "$OPENCV" == "YES" ]; then
+    
     if [ $(uname -s) == "Darwin" ]; then
         ADD_PARAMETERS="-DPYTHON2_PACKAGES_PATH=/usr/local/lib/python2.7/site-packages \
                        -DPYTHON2_LIBRARY=/usr/local/Frameworks/Python.framework/Versions/2.7/bin \
@@ -105,6 +106,7 @@ if [ "$OPENCV" == "YES" ]; then
         -DOPENCV_EXTRA_MODULES_PATH=$CONTRIB_PATH/modules \
     \
         -DBUILD_opencv_python2=1    \
+        -DHAVE_opencv_java=0        \
         -DBUILD_SHARED_LIBS=1       \
     \
         -DBUILD_DOCS=0              \
