@@ -9,8 +9,8 @@ if [ $NAME == "Darwin" ]; then
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
     brew tap homebrew/science && brew update
-    brew install git cmake automake autoconf libtool
-    brew install  cairo jpeg libpng libtiff openexr eigen 
+    brew install git python cmake automake autoconf libtool
+    brew install  jpeg libpng libtiff  eigen 
     brew cleanup && brew prune
 fi
 
